@@ -6,29 +6,30 @@ class Solution {
         vector<vector<int>> fourSum(vector<int>& nums, int target) {
             int n = nums.size();
             set<vector<int>> st;
+    
             for (int i = 0; i < n; i++) {
                 for (int j = i + 1; j < n; j++) {
-                    set<long long> mpp;
                     for (int k = j + 1; k < n; k++) {
-                        long long sum =
-                            (long long)nums[i] + nums[j] + nums[k];
-                        long long forth = (long long)target - sum;
-                        if (mpp.find(forth) != mpp.end()) {
+                        for (int l = k + 1; l < n; l++) {
     
-                            vector<int> temp = {
-                                nums[i],
-                                nums[j],
-                                nums[k],
-                                (int)forth
-                            };
+                            long long sum = (long long)nums[i]
+                                          + nums[j]
+                                          + nums[k]
+                                          + nums[l];
     
-                            sort(temp.begin(), temp.end());
-                            st.insert(temp);
+                            if (sum == target) {
+                                vector<int> temp = {
+                                    nums[i], nums[j], nums[k], nums[l]
+                                };
+    
+                                sort(temp.begin(), temp.end());
+                                st.insert(temp);
+                            }
                         }
-                        mpp.insert(nums[k]);
                     }
                 }
             }
+    
             vector<vector<int>> ans(st.begin(), st.end());
             return ans;
         }
