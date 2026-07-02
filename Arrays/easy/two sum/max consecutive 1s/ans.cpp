@@ -1,0 +1,20 @@
+leetcode 485 max consecutive ones
+topic array, two pointers
+difficulty easy
+lass Solution {
+    public:
+        int findMaxConsecutiveOnes(vector<int>& nums) {
+            int maxi=0;
+            int c=0;
+            for(int i=0;i<nums.size();i++){
+                if(nums[i]==1){
+                    c++;
+                    maxi=max(c,maxi);
+                }
+                else{
+                    c=0;
+                }
+            }
+            return maxi;
+        }
+    };
